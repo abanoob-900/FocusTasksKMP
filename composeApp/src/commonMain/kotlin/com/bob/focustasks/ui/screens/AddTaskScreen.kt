@@ -425,7 +425,7 @@ private fun BottomSaveArea(
     }
 }
 
-@Preview
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun AddTaskScreenPreview() {
     AddTaskScreen()

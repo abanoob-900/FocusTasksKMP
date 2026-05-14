@@ -5,8 +5,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-
-    kotlin("plugin.serialization") version "2.1.0"
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -23,6 +22,7 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
             isStatic = true
+            binaryOptions["bundleId"] = "com.bob.focustasks"
         }
     }
     
@@ -88,4 +88,19 @@ android {
 
 dependencies {
     debugImplementation(libs.compose.uiTooling)
+}
+
+// Workaround for 'Could not start plutil' issue in Kotlin Multiplatform
+tasks.configureEach {
+    try {
+        val getPlutilExecutable = this::class.java.methods.find { it.name == "getPlutilExecutable" }
+        if (getPlutilExecutable != null) {
+            val plutilExecutable = getPlutilExecutable.invoke(this)
+            if (plutilExecutable is Property<*>) {
+                @Suppress("UNCHECKED_CAST")
+                (plutilExecutable as Property<File>).set(file("/usr/bin/plutil"))
+            }
+        }
+    } catch (_: Exception) {
+    }
 }
