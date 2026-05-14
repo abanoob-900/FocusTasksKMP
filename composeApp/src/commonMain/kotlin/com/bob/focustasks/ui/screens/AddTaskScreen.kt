@@ -11,8 +11,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -62,7 +64,7 @@ fun AddTaskScreen(onBackClick: () -> Unit = {}) {
                         start = 8.dp,
                         end = 8.dp,
                         top = 16.dp,
-                        bottom = 98.dp
+                        bottom = 16.dp
                     )
                     .fillMaxSize()
             ) {
@@ -115,6 +117,7 @@ private fun AddTaskHeader(onBackClick: () -> Unit = {}) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .statusBarsPadding()
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -392,8 +395,9 @@ private fun BottomSaveArea(
     Box(
         modifier = modifier
             .fillMaxWidth()
+            .navigationBarsPadding()
             .height(92.dp)
-            .background(Color(0xFFFFFFFF))
+            .background(Color.White)
             .padding(horizontal = 22.dp, vertical = 18.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -412,7 +416,9 @@ private fun BottomSaveArea(
                 contentDescription = null,
                 tint = Color.White
             )
+
             Spacer(modifier = Modifier.width(16.dp))
+
             Text(
                 text = "Save Task",
                 color = Color.White,
