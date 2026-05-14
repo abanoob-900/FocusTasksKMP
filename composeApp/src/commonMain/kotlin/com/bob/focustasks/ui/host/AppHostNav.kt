@@ -18,7 +18,9 @@ fun AppNavHost(navController: NavHostController) {
             )
         }
         composable<Screen.AddTask> {
-            AddTaskScreen()
+            AddTaskScreen(
+                onBackClick = { navController.popBackStack() }
+            )
         }
     }
 }

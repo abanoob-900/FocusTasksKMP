@@ -38,7 +38,7 @@ import focustasks.composeapp.generated.resources.icon_save
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun AddTaskScreen() {
+fun AddTaskScreen(onBackClick: () -> Unit = {}) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -52,7 +52,7 @@ fun AddTaskScreen() {
                 )
                 .fillMaxSize()
         ) {
-            AddTaskHeader()
+            AddTaskHeader(onBackClick = onBackClick)
 
             Column(
                 modifier = Modifier
@@ -113,7 +113,7 @@ fun AddTaskScreen() {
 }
 
 @Composable
-private fun AddTaskHeader() {
+private fun AddTaskHeader(onBackClick: () -> Unit = {}) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -125,7 +125,7 @@ private fun AddTaskHeader() {
                 .size(36.dp)
                 .clip(CircleShape)
                 .background(AppColors.PrimaryLight)
-                .clickable {},
+                .clickable {onBackClick()},
             contentAlignment = Alignment.Center
         ) {
             Icon(
