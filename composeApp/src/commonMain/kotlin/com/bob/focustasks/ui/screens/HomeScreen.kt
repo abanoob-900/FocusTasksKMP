@@ -32,7 +32,9 @@ import androidx.compose.ui.unit.sp
 import com.bob.focustasks.ui.theme.AppColors
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onAddTaskClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -41,7 +43,11 @@ fun HomeScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(
+                    top = 16.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                )
         ) {
             HomeHeader()
 
@@ -49,8 +55,8 @@ fun HomeScreen() {
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
+                    .padding(bottom = 16.dp)
             ) {
-
                 Spacer(modifier = Modifier.height(36.dp))
 
                 ProgressCard()
@@ -102,7 +108,7 @@ fun HomeScreen() {
         }
 
         FloatingActionButton(
-            onClick = {},
+            onClick = onAddTaskClick,
             containerColor = AppColors.Primary,
             contentColor = Color.White,
             elevation = FloatingActionButtonDefaults.elevation(8.dp),
@@ -156,7 +162,12 @@ private fun HomeHeader() {
             modifier = Modifier
                 .size(42.dp)
                 .clip(CircleShape)
-                .background(Color(0xFFD8D0C4)),
+                .background(Color(0xFFD8D0C4))
+                .border(
+                    width = 2.dp,
+                    color = AppColors.Primary,
+                    shape = CircleShape
+                ),
             contentAlignment = Alignment.Center
         ) {
             Text(
@@ -380,5 +391,7 @@ private fun CategoryBadge(
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(
+        onAddTaskClick = {}
+    )
 }

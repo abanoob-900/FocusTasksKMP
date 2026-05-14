@@ -1,4 +1,12 @@
-package com.bob.focustasks
+package com.bob.focustasks.ui.host
 
-class Screen {
+import kotlinx.serialization.Serializable
+
+sealed interface Screen {
+    @Serializable
+    data object Main : Screen
+
+    @Serializable
+    data object AddTask : Screen
+
 }

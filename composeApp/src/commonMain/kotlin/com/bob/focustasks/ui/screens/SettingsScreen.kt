@@ -236,8 +236,21 @@ private fun ProfileCard(primaryColor: Color) {
                     modifier = Modifier
                         .size(60.dp)
                         .clip(CircleShape)
-                        .background(Color.LightGray)
-                )
+                        .background(Color(0xFFD8D0C4))
+                        .border(
+                            width = 2.dp,
+                            color = AppColors.Primary,
+                            shape = CircleShape
+                        ),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "A",
+                        color = AppColors.TextPrimary,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
                 Box(
                     modifier = Modifier
                         .size(20.dp)
@@ -257,13 +270,13 @@ private fun ProfileCard(primaryColor: Color) {
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "Alex Morgan",
+                    text = "Abanoob SAmy",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
                 )
                 Text(
-                    text = "alex@example.com",
+                    text = "Abanoob@web-apps.site",
                     fontSize = 14.sp,
                     color = Color.Gray
                 )

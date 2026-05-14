@@ -13,8 +13,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.bob.focustasks.ui.components.AppBottomBar
 import com.bob.focustasks.ui.components.BottomNavTab
+import com.bob.focustasks.ui.host.AppNavHost
+import com.bob.focustasks.ui.screens.AddTaskScreen
 import com.bob.focustasks.ui.screens.CalendarScreen
 import com.bob.focustasks.ui.screens.FocusScreen
 import com.bob.focustasks.ui.screens.HomeScreen
@@ -25,33 +28,8 @@ import com.bob.focustasks.ui.theme.FocusTasksTheme
 @Composable
 fun App() {
     FocusTasksTheme {
-        var currentTab by remember { mutableStateOf(BottomNavTab.Tasks) }
-
-        Scaffold(
-            bottomBar = {
-                AppBottomBar(
-                    currentTab = currentTab,
-                    onTabSelected = { selectedTab ->
-                        currentTab = selectedTab
-                    }
-                )
-            }
-        ) { innerPadding ->
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(innerPadding)
-            ) {
-                when (currentTab) {
-                    BottomNavTab.Tasks -> HomeScreen()
-
-                    BottomNavTab.Calendar -> CalendarScreen()
-
-                    BottomNavTab.Focus -> FocusScreen()
-
-                    BottomNavTab.Settings -> SettingsScreen()
-                }
-            }
-        }
+        AppNavHost(
+            navController = rememberNavController()
+        )
     }
 }
