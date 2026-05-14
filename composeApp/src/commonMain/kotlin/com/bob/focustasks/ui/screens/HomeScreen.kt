@@ -18,7 +18,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,104 +29,98 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bob.focustasks.ui.components.AppBottomBar
 import com.bob.focustasks.ui.theme.AppColors
 
 @Composable
 fun HomeScreen(
     onAddTaskClick: () -> Unit
 ) {
-    Scaffold(
-        topBar = {
-            HomeHeader()
-        }
-    ) { innerPadding ->
-        Box(
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(AppColors.Background)
+    ) {
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(AppColors.Background)
-                .padding(innerPadding)
+                .padding(
+                    top = 16.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                )
         ) {
+            HomeHeader()
+
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(
-                        top = 16.dp,
-                        start = 16.dp,
-                        end = 16.dp
-                    )
+                    .verticalScroll(rememberScrollState())
+                    .padding(bottom = 16.dp)
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .padding(bottom = 16.dp)
-                ) {
-                    Spacer(modifier = Modifier.height(36.dp))
+                Spacer(modifier = Modifier.height(36.dp))
 
-                    ProgressCard()
+                ProgressCard()
 
-                    Spacer(modifier = Modifier.height(28.dp))
+                Spacer(modifier = Modifier.height(28.dp))
 
-                    SectionHeader()
+                SectionHeader()
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(12.dp))
 
-                    TaskCard(
-                        title = "Review design specs",
-                        subtitle = "Due today • 2:00 PM",
-                        category = "Work",
-                        categoryType = CategoryType.Work,
-                        completed = false
-                    )
+                TaskCard(
+                    title = "Review design specs",
+                    subtitle = "Due today • 2:00 PM",
+                    category = "Work",
+                    categoryType = CategoryType.Work,
+                    completed = false
+                )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                Spacer(modifier = Modifier.height(14.dp))
 
-                    TaskCard(
-                        title = "Buy groceries",
-                        subtitle = "Organic milk, fruits, and bread",
-                        category = "Personal",
-                        categoryType = CategoryType.Personal,
-                        completed = false
-                    )
+                TaskCard(
+                    title = "Buy groceries",
+                    subtitle = "Organic milk, fruits, and bread",
+                    category = "Personal",
+                    categoryType = CategoryType.Personal,
+                    completed = false
+                )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                Spacer(modifier = Modifier.height(14.dp))
 
-                    TaskCard(
-                        title = "Team sync meeting",
-                        subtitle = "Completed at 10:30 AM",
-                        category = "Work",
-                        categoryType = CategoryType.Work,
-                        completed = true
-                    )
+                TaskCard(
+                    title = "Team sync meeting",
+                    subtitle = "Completed at 10:30 AM",
+                    category = "Work",
+                    categoryType = CategoryType.Work,
+                    completed = true
+                )
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                Spacer(modifier = Modifier.height(14.dp))
 
-                    TaskCard(
-                        title = "Evening Yoga Session",
-                        subtitle = "Focus on breathing and stretching",
-                        category = "Health",
-                        categoryType = CategoryType.Health,
-                        completed = false
-                    )
-                }
-            }
-
-            FloatingActionButton(
-                onClick = onAddTaskClick,
-                containerColor = AppColors.Primary,
-                contentColor = Color.White,
-                elevation = FloatingActionButtonDefaults.elevation(8.dp),
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(end = 22.dp, bottom = 16.dp)
-            ) {
-                Text(
-                    text = "+",
-                    fontSize = 34.sp,
-                    fontWeight = FontWeight.Light
+                TaskCard(
+                    title = "Evening Yoga Session",
+                    subtitle = "Focus on breathing and stretching",
+                    category = "Health",
+                    categoryType = CategoryType.Health,
+                    completed = false
                 )
             }
+        }
+
+        FloatingActionButton(
+            onClick = onAddTaskClick,
+            containerColor = AppColors.Primary,
+            contentColor = Color.White,
+            elevation = FloatingActionButtonDefaults.elevation(8.dp),
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = 22.dp, bottom = 16.dp)
+        ) {
+            Text(
+                text = "+",
+                fontSize = 34.sp,
+                fontWeight = FontWeight.Light
+            )
         }
     }
 }
@@ -135,9 +128,7 @@ fun HomeScreen(
 @Composable
 private fun HomeHeader() {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
+        modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(

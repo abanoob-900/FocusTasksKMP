@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -39,76 +40,79 @@ import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun AddTaskScreen(onBackClick: () -> Unit = {}) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(AppColors.Background)
-    ) {
-
-        Column(
+    Scaffold { innerPadding ->
+        Box(
             modifier = Modifier
-                .padding(
-                    top = 16.dp,
-                )
                 .fillMaxSize()
+                .background(AppColors.Background)
+                .padding(innerPadding)
         ) {
-            AddTaskHeader(onBackClick = onBackClick)
 
             Column(
                 modifier = Modifier
                     .padding(
-                        start = 8.dp,
-                        end = 8.dp,
                         top = 16.dp,
-                        bottom = 98.dp
                     )
                     .fillMaxSize()
             ) {
-                Spacer(modifier = Modifier.height(34.dp))
+                AddTaskHeader(onBackClick = onBackClick)
 
-                SectionLabel("TASK IDENTIFICATION")
+                Column(
+                    modifier = Modifier
+                        .padding(
+                            start = 8.dp,
+                            end = 8.dp,
+                            top = 16.dp,
+                            bottom = 98.dp
+                        )
+                        .fillMaxSize()
+                ) {
+                    Spacer(modifier = Modifier.height(34.dp))
 
-                Spacer(modifier = Modifier.height(14.dp))
+                    SectionLabel("TASK IDENTIFICATION")
 
-                TaskInputBox()
+                    Spacer(modifier = Modifier.height(14.dp))
 
-                Spacer(modifier = Modifier.height(30.dp))
+                    TaskInputBox()
 
-                SectionLabel("CLASSIFICATION")
+                    Spacer(modifier = Modifier.height(30.dp))
 
-                Spacer(modifier = Modifier.height(14.dp))
+                    SectionLabel("CLASSIFICATION")
 
-                CategorySection()
+                    Spacer(modifier = Modifier.height(14.dp))
 
-                Spacer(modifier = Modifier.height(34.dp))
+                    CategorySection()
 
-                SectionLabel("TEMPORAL SCHEDULING")
+                    Spacer(modifier = Modifier.height(34.dp))
 
-                Spacer(modifier = Modifier.height(14.dp))
+                    SectionLabel("TEMPORAL SCHEDULING")
 
-                SelectorRow(
-                    icon = "□",
-                    text = "Today, Oct 24",
-                    trailing = "⌄"
-                )
+                    Spacer(modifier = Modifier.height(14.dp))
 
-                Spacer(modifier = Modifier.height(12.dp))
+                    SelectorRow(
+                        icon = "□",
+                        text = "Today, Oct 24",
+                        trailing = "⌄"
+                    )
 
-                SelectorRow(
-                    icon = "○",
-                    text = "10:30 AM",
-                    trailing = "⌄"
-                )
+                    Spacer(modifier = Modifier.height(12.dp))
 
-                Spacer(modifier = Modifier.height(26.dp))
+                    SelectorRow(
+                        icon = "○",
+                        text = "10:30 AM",
+                        trailing = "⌄"
+                    )
 
-                PriorityCard()
+                    Spacer(modifier = Modifier.height(26.dp))
+
+                    PriorityCard()
+                }
             }
-        }
 
-        BottomSaveArea(
-            modifier = Modifier.align(Alignment.BottomCenter)
-        )
+            BottomSaveArea(
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
+        }
     }
 }
 
@@ -125,7 +129,7 @@ private fun AddTaskHeader(onBackClick: () -> Unit = {}) {
                 .size(36.dp)
                 .clip(CircleShape)
                 .background(AppColors.PrimaryLight)
-                .clickable {onBackClick()},
+                .clickable { onBackClick() },
             contentAlignment = Alignment.Center
         ) {
             Icon(
