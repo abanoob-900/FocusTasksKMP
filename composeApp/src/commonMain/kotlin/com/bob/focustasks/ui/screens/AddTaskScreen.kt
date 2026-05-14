@@ -115,34 +115,40 @@ fun AddTaskScreen() {
 @Composable
 private fun AddTaskHeader() {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TextButton(
-            onClick = {},
-            modifier = Modifier.padding(start = 0.dp)
+        Box(
+            modifier = Modifier
+                .size(36.dp)
+                .clip(CircleShape)
+                .background(AppColors.PrimaryLight)
+                .clickable {},
+            contentAlignment = Alignment.Center
         ) {
             Icon(
                 imageVector = Icons.Rounded.Close,
-                contentDescription = "Back Icon",
+                contentDescription = "Close",
                 tint = AppColors.Primary,
-                modifier = Modifier
-                    .size(24.dp)
+                modifier = Modifier.size(20.dp)
             )
         }
 
+        Spacer(modifier = Modifier.width(12.dp))
+
         Text(
             text = "Add New Task",
-            color = AppColors.Primary,
-            fontSize = 21.sp,
+            color = AppColors.TextPrimary,
+            fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.weight(1f)
         )
 
         Box(
             modifier = Modifier
-                .padding(end = 16.dp)
-                .size(38.dp)
+                .size(36.dp)
                 .clip(CircleShape)
                 .background(Color(0xFFD8D0C4)),
             contentAlignment = Alignment.Center
