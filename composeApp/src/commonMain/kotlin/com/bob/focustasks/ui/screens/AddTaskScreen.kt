@@ -40,78 +40,72 @@ import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun AddTaskScreen(onBackClick: () -> Unit = {}) {
-    Scaffold { innerPadding ->
+    Scaffold(
+        topBar = {
+            AddTaskHeader(onBackClick = onBackClick)
+        },
+        bottomBar = {
+            BottomSaveArea(
+                modifier = Modifier
+            )
+        }
+    ) { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(AppColors.Background)
                 .padding(innerPadding)
         ) {
-
             Column(
                 modifier = Modifier
                     .padding(
+                        start = 8.dp,
+                        end = 8.dp,
                         top = 16.dp,
+                        bottom = 98.dp
                     )
                     .fillMaxSize()
             ) {
-                AddTaskHeader(onBackClick = onBackClick)
+                Spacer(modifier = Modifier.height(34.dp))
 
-                Column(
-                    modifier = Modifier
-                        .padding(
-                            start = 8.dp,
-                            end = 8.dp,
-                            top = 16.dp,
-                            bottom = 98.dp
-                        )
-                        .fillMaxSize()
-                ) {
-                    Spacer(modifier = Modifier.height(34.dp))
+                SectionLabel("TASK IDENTIFICATION")
 
-                    SectionLabel("TASK IDENTIFICATION")
+                Spacer(modifier = Modifier.height(14.dp))
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                TaskInputBox()
 
-                    TaskInputBox()
+                Spacer(modifier = Modifier.height(30.dp))
 
-                    Spacer(modifier = Modifier.height(30.dp))
+                SectionLabel("CLASSIFICATION")
 
-                    SectionLabel("CLASSIFICATION")
+                Spacer(modifier = Modifier.height(14.dp))
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                CategorySection()
 
-                    CategorySection()
+                Spacer(modifier = Modifier.height(34.dp))
 
-                    Spacer(modifier = Modifier.height(34.dp))
+                SectionLabel("TEMPORAL SCHEDULING")
 
-                    SectionLabel("TEMPORAL SCHEDULING")
+                Spacer(modifier = Modifier.height(14.dp))
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                SelectorRow(
+                    icon = "□",
+                    text = "Today, Oct 24",
+                    trailing = "⌄"
+                )
 
-                    SelectorRow(
-                        icon = "□",
-                        text = "Today, Oct 24",
-                        trailing = "⌄"
-                    )
+                Spacer(modifier = Modifier.height(12.dp))
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                SelectorRow(
+                    icon = "○",
+                    text = "10:30 AM",
+                    trailing = "⌄"
+                )
 
-                    SelectorRow(
-                        icon = "○",
-                        text = "10:30 AM",
-                        trailing = "⌄"
-                    )
+                Spacer(modifier = Modifier.height(26.dp))
 
-                    Spacer(modifier = Modifier.height(26.dp))
-
-                    PriorityCard()
-                }
+                PriorityCard()
             }
-
-            BottomSaveArea(
-                modifier = Modifier.align(Alignment.BottomCenter)
-            )
         }
     }
 }
